@@ -19,6 +19,11 @@ BEGIN {
     $CONFIG{'VERBOSE'} = $ENV{'CRITIQUE_VERBOSE'} // 0;
     $CONFIG{'EDITOR'}  = $ENV{'CRITIQUE_EDITOR'}  || $ENV{'EDITOR'} || $ENV{'VISUAL'};
 
+    $CONFIG{'EDITOR'}
+        or die "Could not find any editor.\n"
+             . "Please set one of the following environment variables:\n"
+             . "'EDITOR', 'CRITIQUE_EDITOR', or 'VISUAL'.\n";
+
     # okay, we give you sensible Perl & Git defaults
     $CONFIG{'IGNORE'} = {
         '.git'   => 1,
